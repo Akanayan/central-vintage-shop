@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Central Vintage Shop — Friperie vintage, Vieux-Nice</title>
+<meta name="description" content="Central Vintage Shop, friperie vintage au 22 rue Centrale, dans le Vieux-Nice. Pièces choisies une à une, ouvert du mardi au dimanche.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3E9D6; --paper2:#E9DCC2; --ink:#16120E; --azur:#2740D8; --soleil:#F2B233; --tomate:#DD4A2C;
+  --line:rgba(22,18,14,.18);
+  --display:"Fraunces", Georgia, serif; --body:"Instrument Sans", system-ui, sans-serif; --mono:"DM Mono", ui-monospace, monospace;
+  --pad:clamp(20px,4.2vw,64px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .08 0 0 0 0 .05 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--azur);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+/* bandeau maquette */
+.proto{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-align:center;padding:8px 16px}
+.proto b{color:var(--soleil);font-weight:500}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:28px;padding:14px var(--pad);background:rgba(243,233,214,.9);backdrop-filter:blur(8px);border-bottom:1.5px solid var(--ink)}
+.logo{font-family:var(--display);font-weight:900;font-size:21px;letter-spacing:-.02em;line-height:1;display:flex;align-items:center;gap:9px;white-space:nowrap}
+.logo i{font-weight:600;color:var(--azur)}
+.logo svg{width:20px;height:20px;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.logo:hover svg{transform:rotate(144deg)}
+.nav ul{display:flex;gap:26px;list-style:none;margin-left:auto;font-size:15px;font-weight:500}
+.nav ul a{position:relative;padding:4px 0}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav ul a:hover::after{transform:scaleX(1)}
+.lang{font-family:var(--mono);font-size:12px;border:1.5px solid var(--ink);border-radius:99px;display:flex;overflow:hidden}
+.lang span{padding:6px 10px;transition:background .25s,color .25s}
+.lang[data-l="fr"] .fr,.lang[data-l="en"] .en{background:var(--ink);color:var(--paper)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:13px 22px;border-radius:99px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s,color .25s;white-space:nowrap}
+.btn .ar{display:inline-block;transition:transform .25s}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink);background:var(--soleil);color:var(--ink)}
+.btn:hover .ar{transform:translate(2px,-2px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--paper)}
+.btn.sm{padding:9px 16px;font-size:14px}
+.btn.light{border-color:var(--paper);background:var(--paper);color:var(--ink)}
+.btn.light:hover{box-shadow:5px 5px 0 var(--soleil);background:var(--soleil)}
+.btn.lineL{border-color:var(--paper);background:transparent;color:var(--paper)}
+.btn.lineL:hover{box-shadow:5px 5px 0 var(--soleil);background:var(--paper);color:var(--ink)}
+.burger{display:none;width:44px;height:44px;border:1.5px solid var(--ink);border-radius:50%;position:relative}
+.burger::before,.burger::after{content:"";position:absolute;left:12px;right:12px;height:2px;background:var(--ink);transition:transform .3s,top .3s}
+.burger::before{top:16px}.burger::after{top:25px}
+.open .burger::before{top:20px;transform:rotate(45deg)}.open .burger::after{top:20px;transform:rotate(-45deg)}
+
+/* hero */
+.hero{position:relative;padding:clamp(28px,5vw,64px) var(--pad) 0;overflow:hidden}
+.kicker{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.status{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 11px;border:1.5px solid var(--ink);border-radius:99px;background:var(--paper);text-transform:none;letter-spacing:.02em}
+.status::before{content:"";width:9px;height:9px;border-radius:50%;background:#9a9285}
+.status.on::before{background:#1FA35B;box-shadow:0 0 0 0 rgba(31,163,91,.6);animation:pulse 2s infinite}
+.status.off::before{background:var(--tomate)}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(31,163,91,0)}100%{box-shadow:0 0 0 0 rgba(31,163,91,0)}}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(68px,13.4vw,224px);line-height:.8;letter-spacing:-.045em;text-transform:uppercase;margin-top:clamp(18px,2.6vw,34px);position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:.1em}
+h1 .l{display:block;overflow:hidden;padding:.06em .05em .3em 0;margin-bottom:-.24em}
+h1 .l:nth-child(1){grid-column:1/-1}
+h1 .l>span{display:inline-block;transform:translateY(110%);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+h1 .l:nth-child(2)>span{animation-delay:.12s}h1 .l:nth-child(3)>span{animation-delay:.24s}
+h1 .v{font-style:italic;font-weight:700;text-transform:none;color:var(--azur);letter-spacing:-.05em;padding-left:.14em}
+h1 .l:nth-child(3){text-align:right}
+@keyframes rise{to{transform:none}}
+.ttl{position:relative}
+.sticker{position:absolute;right:.6vw;top:-1.4vw;width:clamp(112px,15vw,210px);aspect-ratio:1;z-index:3;transform:rotate(-8deg) scale(0);animation:pop .7s .7s cubic-bezier(.3,1.5,.5,1) forwards}
+@keyframes pop{to{transform:rotate(-8deg) scale(1)}}
+.sticker .ring{animation:spin 22s linear infinite;transform-origin:50% 50%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sticker:hover .ring{animation-duration:6s}
+.heroRow{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-top:clamp(20px,3vw,40px)}
+.heroRow p{max-width:31em;font-size:clamp(17px,1.5vw,21px);line-height:1.45}
+.heroRow p b{font-weight:600;background:linear-gradient(transparent 62%,var(--soleil) 62%)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+
+/* portant */
+.rail{position:relative;margin:clamp(34px,5vw,70px) calc(var(--pad)*-1) 0;padding:0 var(--pad);height:clamp(220px,27vw,400px)}
+.rail::before{content:"";position:absolute;left:0;right:0;top:10px;height:7px;background:var(--ink);border-radius:4px}
+.rail::after{content:"";position:absolute;left:0;right:0;top:12px;height:2px;background:rgba(243,233,214,.35)}
+.track{display:flex;justify-content:space-between;gap:1vw;transform:translateX(calc(var(--p,0)*-70px));will-change:transform}
+.hang{--w:clamp(104px,13.4vw,208px);width:var(--w);flex:none;transform-origin:50% 12px;animation:sway 4.6s ease-in-out infinite alternate;cursor:grab}
+.hang:nth-child(2n){animation-duration:5.4s;animation-delay:-1.3s}
+.hang:nth-child(3n){animation-duration:3.9s;animation-delay:-2.2s}
+.hang:hover{animation:swing .9s ease-in-out}
+@keyframes sway{from{transform:rotate(-2.2deg)}to{transform:rotate(2.2deg)}}
+@keyframes swing{0%{transform:rotate(0)}25%{transform:rotate(9deg)}55%{transform:rotate(-6deg)}80%{transform:rotate(3deg)}100%{transform:rotate(0)}}
+.hang .hk{width:100%}
+.hang .gm{width:100%;margin-top:-17%}
+.hang.w .gm{width:112%;margin-left:-6%}
+.c-az{color:var(--azur);--c2:var(--soleil)}.c-so{color:var(--soleil);--c2:var(--azur)}.c-to{color:var(--tomate);--c2:var(--paper)}
+.c-pa{color:var(--paper);--c2:var(--tomate)}.c-in{color:var(--ink);--c2:var(--soleil)}.c-p2{color:var(--paper2);--c2:var(--azur)}
+
+/* bandeau défilant */
+.mq{background:var(--azur);color:var(--paper);border-block:1.5px solid var(--ink);overflow:hidden;white-space:nowrap;padding:16px 0;transform:rotate(-1.2deg) scale(1.02);margin-top:-18px;position:relative;z-index:2}
+.mq div{display:inline-block;animation:mq 30s linear infinite;font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(22px,3vw,40px);letter-spacing:-.01em}
+.mq span{margin:0 .55em}.mq em{font-style:normal;color:var(--soleil)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding:clamp(70px,9vw,140px) var(--pad)}
+.tag{display:inline-block;font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px 8px 30px;background:var(--paper2);border:1.5px solid var(--ink);border-left:0;position:relative;clip-path:polygon(14px 0,100% 0,100% 100%,14px 100%,0 50%)}
+.tag::before{content:"";position:absolute;left:13px;top:50%;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);transform:translateY(-50%)}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(40px,6.4vw,104px);line-height:.92;letter-spacing:-.035em;margin-top:22px}
+h2 i{font-weight:600;color:var(--azur)}
+.lead{font-size:clamp(17px,1.4vw,20px);max-width:34em;margin-top:22px}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* arrivages */
+.headRow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:clamp(36px,5vw,64px)}
+.card{position:relative;border:1.5px solid var(--ink);border-radius:18px;overflow:hidden;min-height:340px;display:flex;align-items:center;justify-content:center;padding:44px 24px 76px;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.card:hover{transform:translate(-5px,-5px);box-shadow:8px 8px 0 var(--ink)}
+.card svg.il{width:min(66%,270px);transition:transform .6s cubic-bezier(.3,1.4,.5,1);filter:drop-shadow(6px 8px 0 rgba(22,18,14,.16))}
+.card:hover svg.il{transform:rotate(-6deg) scale(1.07)}
+.card:nth-child(1){grid-column:span 5;background:var(--soleil)}
+.card:nth-child(2){grid-column:span 4;background:var(--paper2)}
+.card:nth-child(3){grid-column:span 3;background:var(--azur)}
+.card:nth-child(4){grid-column:span 3;background:var(--tomate)}
+.card:nth-child(5){grid-column:span 4;background:var(--paper2)}
+.card:nth-child(6){grid-column:span 5;background:var(--ink)}
+.card .lab{position:absolute;left:16px;bottom:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.card .lab b{color:var(--ink);font-family:var(--display);font-weight:800;font-size:clamp(22px,2vw,30px);line-height:1;letter-spacing:-.02em;background:var(--paper);border:1.5px solid var(--ink);padding:9px 14px 10px;border-radius:10px}
+.card .n{position:absolute;top:14px;left:16px;font-family:var(--mono);font-size:12px;letter-spacing:.08em}
+.card:nth-child(3) .n,.card:nth-child(6) .n,.card:nth-child(4) .n{color:var(--paper)}
+.card .ph{color:var(--ink);position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;background:var(--paper);border:1.5px dashed var(--ink);padding:5px 9px;border-radius:6px}
+.after{display:flex;flex-wrap:wrap;gap:18px 28px;align-items:center;justify-content:space-between;margin-top:34px;padding-top:26px;border-top:1.5px solid var(--ink)}
+.after p{max-width:36em}
+
+/* boutique */
+.about{display:grid;grid-template-columns:5fr 6fr;gap:clamp(30px,6vw,96px);align-items:center;background:var(--paper2);border-block:1.5px solid var(--ink)}
+.frame{position:relative;aspect-ratio:4/5;border:1.5px solid var(--ink);border-radius:18px;transform:rotate(-2.4deg);background:repeating-linear-gradient(135deg,var(--paper) 0 18px,rgba(22,18,14,.07) 18px 36px);display:grid;place-items:center;box-shadow:12px 12px 0 var(--azur);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.frame:hover{transform:rotate(0)}
+.frame div{text-align:center;font-family:var(--mono);font-size:13px;letter-spacing:.05em;text-transform:uppercase;background:var(--paper);border:1.5px dashed var(--ink);border-radius:10px;padding:18px 20px;max-width:78%}
+.frame svg{width:38px;margin:0 auto 10px}
+.frame .tape{position:absolute;top:-16px;left:50%;width:120px;height:32px;background:rgba(242,178,51,.85);transform:translateX(-50%) rotate(3deg);border:1.5px solid rgba(22,18,14,.25)}
+.facts{list-style:none;margin-top:34px;border-top:1.5px solid var(--ink)}
+.facts li{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:baseline;padding:18px 0;border-bottom:1.5px solid var(--ink)}
+.facts span{font-family:var(--mono);font-size:13px}
+.facts b{font-family:var(--display);font-weight:700;font-size:clamp(21px,2vw,28px);line-height:1.1;letter-spacing:-.015em;display:block}
+.facts small{display:block;font-size:15.5px;margin-top:5px;opacity:.82}
+
+/* avis */
+.avis{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.avis .tag{color:var(--ink)}
+.avis h2 i{color:var(--soleil)}
+.score{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,6vw,90px);align-items:center;margin-top:clamp(30px,4vw,54px)}
+.big{font-family:var(--display);font-weight:900;font-size:clamp(130px,23vw,380px);line-height:.76;letter-spacing:-.06em;color:var(--soleil);font-variant-numeric:tabular-nums}
+.big small{font-size:.2em;letter-spacing:0;color:var(--paper);font-weight:600;font-style:italic;margin-left:.2em}
+.stars{display:flex;gap:6px}.stars svg{width:clamp(26px,3vw,40px);fill:var(--soleil)}
+.stars svg{transform:scale(0) rotate(-60deg);transition:transform .6s cubic-bezier(.3,1.5,.5,1)}
+.in .stars svg{transform:none}
+.stars svg:nth-child(2){transition-delay:.08s}.stars svg:nth-child(3){transition-delay:.16s}.stars svg:nth-child(4){transition-delay:.24s}.stars svg:nth-child(5){transition-delay:.32s}
+.count{font-size:clamp(19px,1.8vw,26px);margin-top:16px}
+.count b{font-family:var(--display);font-weight:800;font-size:1.5em}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.chips>span{font-family:var(--mono);font-size:13px;border:1.5px solid rgba(243,233,214,.45);border-radius:99px;padding:8px 14px}
+.chips>span b{color:var(--soleil);font-weight:500}
+.chipsT{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;margin-top:30px}
+blockquote{font-family:var(--display);font-style:italic;font-weight:500;font-size:clamp(24px,2.7vw,40px);line-height:1.15;letter-spacing:-.015em;margin-top:clamp(40px,5vw,70px);padding-top:30px;border-top:1.5px solid rgba(243,233,214,.3);max-width:22em}
+blockquote cite{display:block;font-family:var(--mono);font-style:normal;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;opacity:.65;margin-top:16px}
+.avis .cta{margin-top:34px}
+
+/* venir */
+.venir{display:grid;grid-template-columns:6fr 5fr;gap:clamp(30px,6vw,90px);align-items:start}
+.addr{font-family:var(--display);font-weight:800;font-size:clamp(34px,4.6vw,72px);line-height:.98;letter-spacing:-.03em;margin-top:26px}
+.addr i{font-weight:600;color:var(--azur)}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:34px;border-top:1.5px solid var(--ink)}
+.meta div{padding:18px 0;border-bottom:1.5px solid var(--ink)}
+.meta div:nth-child(odd){padding-right:18px;border-right:1.5px solid var(--ink)}
+.meta div:nth-child(even){padding-left:18px}
+.meta dt{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.meta dd{font-weight:600;font-size:17px;margin-top:4px}
+.venir .cta{margin-top:30px}
+.ticket{background:#FFFDF7;border:1.5px solid var(--ink);border-bottom:0;padding:30px 26px 46px;font-family:var(--mono);font-size:15px;transform:rotate(1.6deg);box-shadow:10px 12px 0 rgba(22,18,14,.14);
+  -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/16px 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/16px 100%;
+  clip-path:inset(0 0 100% 0);transition:clip-path 1.3s cubic-bezier(.3,.7,.2,1) .15s}
+.tw{filter:drop-shadow(0 1.5px 0 var(--ink))}
+.in .ticket,.ticket.in{clip-path:inset(0)}
+.ticket h3{font-family:var(--display);font-weight:900;font-size:25px;letter-spacing:-.02em;text-align:center;text-transform:uppercase;line-height:1}
+.ticket .sub{text-align:center;font-size:12px;letter-spacing:.06em;margin-top:8px;padding-bottom:16px;border-bottom:1.5px dashed var(--ink)}
+.ticket ul{list-style:none;margin-top:10px}
+.ticket li{display:flex;justify-content:space-between;gap:10px;padding:9px 8px;border-radius:6px;white-space:nowrap}
+.ticket li.today{background:var(--soleil);font-weight:500}
+.ticket .td{font-style:normal}
+.ticket li.closed span:last-child{opacity:.55}
+.ticket .foot{margin-top:12px;padding-top:16px;border-top:1.5px dashed var(--ink);text-align:center;font-size:12px;letter-spacing:.04em}
+.bar{height:44px;margin:16px auto 0;width:74%;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px,var(--ink) 5px 9px,transparent 9px 11px,var(--ink) 11px 12px,transparent 12px 16px)}
+
+/* pied */
+footer{background:var(--azur);color:var(--paper);padding:clamp(50px,7vw,100px) var(--pad) 56px;border-top:1.5px solid var(--ink);overflow:hidden}
+.fbig{font-family:var(--display);font-weight:900;font-style:italic;font-size:clamp(54px,12.6vw,210px);line-height:.84;letter-spacing:-.05em}
+.fbig span{color:var(--soleil)}
+.frow{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;margin-top:clamp(34px,5vw,60px);padding-top:26px;border-top:1.5px solid rgba(243,233,214,.4);font-size:15px}
+.frow a{border-bottom:1.5px solid currentColor}
+.frow .m{font-family:var(--mono);font-size:12px;letter-spacing:.04em;opacity:.85;max-width:38em}
+
+/* barre mobile */
+.dock{display:none}
+
+/* menu mobile */
+.menu{position:fixed;inset:0;z-index:40;background:var(--soleil);padding:120px var(--pad) 40px;display:flex;flex-direction:column;gap:6px;transform:translateY(-100%);transition:transform .55s cubic-bezier(.7,0,.2,1);visibility:hidden}
+.open .menu{transform:none;visibility:visible}
+.menu a{font-family:var(--display);font-weight:800;font-size:13vw;line-height:1.02;letter-spacing:-.03em}
+.menu a i{color:var(--azur);font-weight:600}
+.menu small{font-family:var(--mono);font-size:13px;margin-top:auto}
+
+@media (max-width:980px){
+  .nav ul{display:none}.nav .btn{display:none}.burger{display:block}.lang{margin-left:auto}
+  .card:nth-child(n){grid-column:span 6}
+  .about,.venir{grid-template-columns:1fr}
+  .frame{max-width:420px;margin:0 auto}
+  .score{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px;padding-bottom:0}
+  .proto{font-size:10.5px;padding:7px 10px}
+  .nav{padding:10px var(--pad);gap:10px}
+  .logo{font-size:18px}
+  h1{font-size:19.6vw;line-height:.82}
+  h1 .v{padding-left:.1em}
+  .sticker{top:auto;right:auto;left:2px;bottom:-4px;width:27vw;max-width:112px}
+  .hero{padding-top:22px}
+  .heroRow{margin-top:30px}
+  .cta .btn{flex:1;justify-content:center}
+  .rail{height:230px;margin-top:34px}
+  .track{justify-content:flex-start;gap:14px;width:max-content;transform:translateX(calc(-18px + var(--p,0)*-150px))}
+  .hang{--w:128px}
+  .mq{margin-top:-10px}
+  .grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--pad)*-1);padding:6px var(--pad) 18px;scrollbar-width:none}
+  .grid::-webkit-scrollbar{display:none}
+  .card{flex:none;width:78vw;min-height:380px;scroll-snap-align:center}
+  .card:hover{transform:none;box-shadow:none}
+  .swipe{display:flex!important}
+  .after{margin-top:14px}
+  .after .btn,.venir .cta .btn,.avis .cta .btn{width:100%;justify-content:center}
+  .meta{grid-template-columns:1fr}
+  .meta div:nth-child(n){padding:14px 0;border-right:0}
+  .ticket{transform:none;padding:26px 18px 42px;font-size:14.5px}
+  .ticket .td{display:none}
+  .ticket li.today span:first-child::after{content:" ●";font-size:9px;vertical-align:middle}
+  .frame{box-shadow:8px 8px 0 var(--azur)}
+  h1{display:block}
+  footer{padding-bottom:120px}
+  .dock{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:45;background:var(--ink);color:var(--paper);border-radius:18px;padding:8px 8px 8px 16px;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(22,18,14,.35);transform:translateY(140%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .dock.show{transform:none}
+  .dock .st{flex:1;font-size:13px;line-height:1.2;display:flex;align-items:center;gap:8px;min-width:0}
+  .dock .st::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:#9a9285}
+  .dock .st.on::before{background:#2fd17a}.dock .st.off::before{background:var(--tomate)}
+  .dock a{flex:none;font-weight:600;font-size:14px;padding:12px 16px;border-radius:12px;background:var(--soleil);color:var(--ink)}
+  .dock a.ig{background:transparent;border:1.5px solid rgba(243,233,214,.5);color:var(--paper);padding:10.5px 12px}
+  .dock svg{width:20px;height:20px}
+}
+.swipe{display:none;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-top:6px}
+.swipe::after{content:"→";animation:nudge 1.2s ease-in-out infinite alternate}
+@keyframes nudge{to{transform:translateX(8px)}}
+
+.shot *,.shot *::before,.shot *::after{animation-duration:.001s!important;animation-delay:0s!important;transition:none!important}
+.shot .hang,.shot .mq div,.shot .ring,.shot .status::before,.shot .swipe::after{animation:none!important}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  h1 .l>span{transform:none}.sticker{transform:rotate(-8deg)}.rv{opacity:1;transform:none}.ticket{clip-path:none}.stars svg{transform:none}
+  .track{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="star" viewBox="0 0 24 24"><path d="M12 1.6l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.7l-6.4 3.5 1.4-7.1-5.3-5 7.2-.9z"/></symbol>
+    <symbol id="hanger" viewBox="0 0 200 70"><path d="M100 36V24c0-7 11-7 11-15a11 11 0 0 0-22 0" fill="none" stroke="#16120E" stroke-width="5" stroke-linecap="round"/><path d="M100 36L18 64h164z" fill="none" stroke="#16120E" stroke-width="5" stroke-linejoin="round"/></symbol>
+    <symbol id="g-jersey" viewBox="0 0 200 250"><path d="M62 14C62 48 82 60 100 60s38-12 38-46h28c0 44 10 66 22 78v144H12V92c12-12 22-34 22-78z" fill="currentColor" stroke="#16120E" stroke-width="5" stroke-linejoin="round"/><path d="M15 212h170" stroke="var(--c2)" stroke-width="9"/><path d="M48 16c0 42 22 58 52 58s52-16 52-58" fill="none" stroke="var(--c2)" stroke-width="6"/><text x="100" y="168" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="78" fill="var(--c2)" stroke="#16120E" stroke-width="3" paint-order="stroke">06</text><path d="M62 14C62 48 82 60 100 60s38-12 38-46h28c0 44 10 66 22 78v144H12V92c12-12 22-34 22-78z" fill="none" stroke="#16120E" stroke-width="5" stroke-linejoin="round"/></symbol>
+    <symbol id="g-sweat" viewBox="0 0 220 250"><path d="M78 18c10 16 54 16 64 0l34 12 38 98-32 14-16-38v128H54V104l-16 38-32-14 38-98z" fill="currentColor" stroke="#16120E" stroke-width="5" stroke-linejoin="round"/><path d="M72 21c14 26 62 26 76 0" fill="none" stroke="#16120E" stroke-width="4"/><path d="M54 212h112M12 118l30 13M208 118l-30 13" stroke="#16120E" stroke-width="4"/><text x="110" y="124" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="34" letter-spacing="3" fill="var(--c2)" stroke="#16120E" stroke-width="2" paint-order="stroke">NICE</text><path d="M72 138h76" stroke="var(--c2)" stroke-width="5"/></symbol>
+    <symbol id="g-tee" viewBox="0 0 220 200"><path d="M78 16c10 16 54 16 64 0l36 14 36 48-30 22-18-20v98H54V80l-18 20L6 78l36-48z" fill="currentColor" stroke="#16120E" stroke-width="5" stroke-linejoin="round"/><path d="M72 19c14 24 62 24 76 0" fill="none" stroke="#16120E" stroke-width="4"/><path d="M110 78l8 17 18 2-13 13 3 18-16-9-16 9 3-18-13-13 18-2z" fill="var(--c2)" stroke="#16120E" stroke-width="3" stroke-linejoin="round"/></symbol>
+    <symbol id="g-dress" viewBox="0 0 200 260"><path d="M72 12h12c4 22 28 22 32 0h12l8 54c1 18-8 28-12 38l52 142H24l52-142c-4-10-13-20-12-38z" fill="currentColor" stroke="#16120E" stroke-width="5" stroke-linejoin="round"/><path d="M76 104h48" stroke="#16120E" stroke-width="5"/><g fill="var(--c2)" stroke="#16120E" stroke-width="2"><circle cx="86" cy="140" r="7"/><circle cx="116" cy="158" r="7"/><circle cx="78" cy="186" r="7"/><circle cx="108" cy="204" r="7"/><circle cx="140" cy="196" r="7"/><circle cx="62" cy="226" r="7"/><circle cx="96" cy="232" r="7"/><circle cx="134" cy="230" r="7"/><circle cx="100" cy="76" r="6"/></g></symbol>
+    <symbol id="g-scarf" viewBox="0 0 220 220"><g transform="rotate(-8 110 110)"><rect x="30" y="30" width="160" height="160" fill="currentColor" stroke="#16120E" stroke-width="5" stroke-linejoin="round"/><rect x="46" y="46" width="128" height="128" fill="none" stroke="var(--c2)" stroke-width="6"/><g stroke="var(--c2)" stroke-width="5" stroke-linecap="round"><path d="M110 62v14M110 144v14M62 110h14M144 110h14M76 76l10 10M134 134l10 10M144 76l-10 10M86 134l-10 10"/></g><circle cx="110" cy="110" r="24" fill="var(--c2)" stroke="#16120E" stroke-width="4"/></g></symbol>
+    <symbol id="g-glasses" viewBox="0 0 240 120"><path d="M106 56c8-12 20-12 28 0" fill="none" stroke="#16120E" stroke-width="6" stroke-linecap="round"/><path d="M16 50L3 40M224 50l13-10" stroke="#16120E" stroke-width="6" stroke-linecap="round"/><rect x="14" y="30" width="94" height="66" rx="28" fill="currentColor" stroke="#16120E" stroke-width="6"/><rect x="132" y="30" width="94" height="66" rx="28" fill="currentColor" stroke="#16120E" stroke-width="6"/><path d="M34 60l20-16M48 68l26-22M152 60l20-16M166 68l26-22" stroke="var(--c2)" stroke-width="5" stroke-linecap="round"/></symbol>
+    <symbol id="g-hat" viewBox="0 0 240 170"><ellipse cx="120" cy="128" rx="110" ry="22" fill="currentColor" stroke="#16120E" stroke-width="5"/><path d="M62 124C56 36 184 36 178 124c-30 12-86 12-116 0z" fill="currentColor" stroke="#16120E" stroke-width="5" stroke-linejoin="round"/><path d="M61 104c34 12 84 12 118 0l-1 20c-30 12-86 12-116 0z" fill="var(--c2)" stroke="#16120E" stroke-width="4" stroke-linejoin="round"/></symbol>
+    <symbol id="ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<div class="proto" data-en="<b>Mock-up</b> prepared for Central Vintage Shop · photos and wording to be approved with you"><b>Maquette</b> préparée pour Central Vintage Shop · photos et textes à valider avec vous</div>
+
+<header class="nav" id="top">
+  <a class="logo" href="#top" aria-label="Central Vintage Shop, haut de page"><svg viewBox="0 0 24 24" fill="#2740D8" stroke="#16120E" stroke-width="1.5" stroke-linejoin="round"><use href="#star"/></svg><span>Central <i>Vintage</i> Shop</span></a>
+  <ul>
+    <li><a href="#arrivages" data-en="New in">Arrivages</a></li>
+    <li><a href="#boutique" data-en="The shop">La boutique</a></li>
+    <li><a href="#avis" data-en="Reviews">Avis</a></li>
+    <li><a href="#venir" data-en="Hours & address">Horaires et adresse</a></li>
+  </ul>
+  <button class="lang" data-l="fr" aria-label="Changer de langue / Switch language"><span class="fr">FR</span><span class="en">EN</span></button>
+  <a class="btn sm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Central%20vintage%20shop%2C%2022%20Rue%20Centrale%2C%2006300%20Nice&destination_place_id=ChIJM_DYnXDbzRIRM9KxJqjd-fk"><span data-en="Directions">Itinéraire</span> <span class="ar">↗</span></a>
+  <button class="burger" aria-label="Menu" aria-expanded="false"></button>
+</header>
+
+<nav class="menu" aria-label="Menu mobile">
+  <a href="#arrivages" data-en="New <i>in</i>">Les <i>arrivages</i></a>
+  <a href="#boutique" data-en="The <i>shop</i>">La <i>boutique</i></a>
+  <a href="#avis" data-en="Your <i>reviews</i>">Les <i>avis</i></a>
+  <a href="#venir" data-en="Hours & <i>address</i>">Horaires, <i>adresse</i></a>
+  <small>22 rue Centrale · 06300 Nice</small>
+</nav>
+
+<main>
+<section class="hero" style="padding-bottom:0">
+  <div class="kicker">
+    <span class="status" id="status" aria-live="polite">…</span>
+    <span data-en="Vintage thrift shop · Old Town, Nice">Friperie vintage · Vieux-Nice</span>
+  </div>
+  <div class="ttl">
+  <h1 aria-label="Central Vintage Shop">
+    <span class="l"><span>Central</span></span>
+    <span class="l"><span class="v">Vintage</span></span>
+    <span class="l"><span>Shop</span></span>
+  </h1>
+  <a class="sticker" href="#avis" aria-label="4,8 sur 5, 89 avis Google">
+    <svg viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="98" fill="#F2B233" stroke="#16120E" stroke-width="3"/>
+      <g class="ring"><path id="circ" d="M100 100m-76 0a76 76 0 1 1 152 0a76 76 0 1 1-152 0" fill="none"/>
+      <text font-family="DM Mono,monospace" font-size="17" font-weight="500" fill="#16120E"><textPath href="#circ" textLength="468" lengthAdjust="spacing">89 AVIS GOOGLE ★ 4,8 SUR 5 ★</textPath></text></g>
+      <circle cx="100" cy="100" r="56" fill="#F3E9D6" stroke="#16120E" stroke-width="3"/>
+      <text x="100" y="118" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="56" letter-spacing="-3" fill="#16120E">4,8</text>
+    </svg>
+  </a>
+  </div>
+  <div class="heroRow">
+    <p data-en="Vintage pieces <b>picked one by one</b>, at 22 rue Centrale, in the heart of Nice Old Town. Push the door, the rack does the rest.">Des pièces vintage <b>choisies une à une</b>, au 22 rue Centrale, en plein Vieux-Nice. Poussez la porte, le portant fait le reste.</p>
+    <div class="cta">
+      <a class="btn" href="#venir"><span data-en="Visit the shop">Venir à la boutique</span> <span class="ar">↓</span></a>
+      <a class="btn ghost" href="#arrivages" data-en="See what's new">Voir les arrivages</a>
+    </div>
+  </div>
+  <div class="rail" aria-hidden="true">
+    <div class="track" id="track">
+      <div class="hang c-az"><svg class="hk" viewBox="0 0 200 70"><use href="#hanger"/></svg><svg class="gm" viewBox="0 0 200 250"><use href="#g-jersey"/></svg></div>
+      <div class="hang w c-pa"><svg class="hk" viewBox="0 0 200 70"><use href="#hanger"/></svg><svg class="gm" viewBox="0 0 220 250"><use href="#g-sweat"/></svg></div>
+      <div class="hang c-to"><svg class="hk" viewBox="0 0 200 70"><use href="#hanger"/></svg><svg class="gm" viewBox="0 0 200 260"><use href="#g-dress"/></svg></div>
+      <div class="hang w c-so"><svg class="hk" viewBox="0 0 200 70"><use href="#hanger"/></svg><svg class="gm" viewBox="0 0 220 200"><use href="#g-tee"/></svg></div>
+      <div class="hang c-in"><svg class="hk" viewBox="0 0 200 70"><use href="#hanger"/></svg><svg class="gm" viewBox="0 0 200 250"><use href="#g-jersey"/></svg></div>
+      <div class="hang w c-az"><svg class="hk" viewBox="0 0 200 70"><use href="#hanger"/></svg><svg class="gm" viewBox="0 0 220 250"><use href="#g-sweat"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<div class="mq" aria-hidden="true"><div id="mq">
+  <span data-en="Picked one by one">Pièces choisies une à une</span><em>★</em><span>22 rue Centrale</span><em>★</em><span data-en="Nice Old Town">Vieux-Nice</span><em>★</em><span data-en="Tuesday to Sunday">Du mardi au dimanche</span><em>★</em><span data-en="4.8 out of 5 on Google">4,8 sur 5 sur Google</span><em>★</em>
+  <span data-en="Picked one by one">Pièces choisies une à une</span><em>★</em><span>22 rue Centrale</span><em>★</em><span data-en="Nice Old Town">Vieux-Nice</span><em>★</em><span data-en="Tuesday to Sunday">Du mardi au dimanche</span><em>★</em><span data-en="4.8 out of 5 on Google">4,8 sur 5 sur Google</span><em>★</em>
+</div></div>
+
+<section id="arrivages">
+  <div class="headRow">
+    <div class="rv">
+      <span class="tag" data-en="N°01 — New in">N°01 — Arrivages</span>
+      <h2 data-en="On the <i>rack</i><br>right now">Sur le <i>portant</i><br>en ce moment</h2>
+    </div>
+    <p class="lead rv" style="--d:.1s" data-en="Every piece is unique: when it's gone, it's gone. Here is what you usually find in the shop.">Chaque pièce est unique : quand elle part, elle part. Voici ce qu'on trouve le plus souvent en boutique.</p>
+  </div>
+  <div class="swipe" data-en="Swipe">Faites défiler</div>
+  <div class="grid">
+    <article class="card rv c-az"><span class="n">01</span><span class="ph" data-en="your photo here">votre photo ici</span><svg class="il" viewBox="0 0 200 250"><use href="#g-jersey"/></svg><div class="lab"><b data-en="Jerseys & sportswear">Maillots &amp; sportswear</b></div></article>
+    <article class="card rv c-to" style="--d:.08s"><span class="n">02</span><span class="ph" data-en="your photo here">votre photo ici</span><svg class="il" viewBox="0 0 220 250"><use href="#g-sweat"/></svg><div class="lab"><b data-en="Sweatshirts & fleeces">Sweats &amp; polaires</b></div></article>
+    <article class="card rv c-so" style="--d:.16s"><span class="n">03</span><span class="ph" data-en="your photo here">votre photo ici</span><svg class="il" viewBox="0 0 200 260"><use href="#g-dress"/></svg><div class="lab"><b data-en="Dresses">Robes</b></div></article>
+    <article class="card rv c-pa"><span class="n">04</span><span class="ph" data-en="your photo here">votre photo ici</span><svg class="il" viewBox="0 0 220 220"><use href="#g-scarf"/></svg><div class="lab"><b data-en="Scarves">Foulards</b></div></article>
+    <article class="card rv c-in" style="--d:.08s"><span class="n">05</span><span class="ph" data-en="your photo here">votre photo ici</span><svg class="il" viewBox="0 0 240 120"><use href="#g-glasses"/></svg><div class="lab"><b data-en="Sunglasses">Lunettes</b></div></article>
+    <article class="card rv c-so" style="--d:.16s"><span class="n">06</span><span class="ph" data-en="your photo here">votre photo ici</span><svg class="il" viewBox="0 0 240 170"><use href="#g-hat"/></svg><div class="lab"><b data-en="Hats & furs">Chapeaux &amp; fourrures</b></div></article>
+  </div>
+  <div class="after rv">
+    <p data-en="New arrivals are shown first on Instagram. Spotted a piece? Message us before you come.">Les nouveaux arrivages sont montrés en premier sur Instagram. Une pièce vous plaît ? Écrivez-nous avant de passer.</p>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.instagram.com/centralvintageshop/"><svg width="20" height="20" viewBox="0 0 24 24"><use href="#ig"/></svg><span data-en="Latest arrivals on Instagram">Les derniers arrivages sur Instagram</span> <span class="ar">↗</span></a>
+  </div>
+</section>
+
+<section class="about" id="boutique">
+  <div class="frame rv">
+    <span class="tape"></span>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="#16120E" stroke-width="1.6" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.6"/></svg><span data-en="Photo of your shop<br>to choose together">Photo de votre boutique<br>à choisir ensemble</span></div>
+  </div>
+  <div>
+    <div class="rv">
+      <span class="tag" data-en="N°02 — The shop">N°02 — La boutique</span>
+      <h2 data-en="An independent shop, <i>rue Centrale.</i>">Une friperie indépendante, <i>rue Centrale.</i></h2>
+      <p class="lead" data-en="Central Vintage Shop is a vintage clothing shop in Nice Old Town. No endless racks here: a tight selection, renewed with every arrival, that you come and try on in the shop.">Central Vintage Shop est une boutique de vêtements vintage du Vieux-Nice. Ici, pas de rayons à perte de vue : une sélection serrée, renouvelée au fil des arrivages, qu'on vient essayer sur place.</p>
+    </div>
+    <ul class="facts">
+      <li class="rv"><span>01</span><div><b data-en="Picked one by one">Des pièces choisies une à une</b><small data-en="Sportswear, sweatshirts, dresses, scarves, sunglasses, hats.">Sportswear, sweats, robes, foulards, lunettes, chapeaux.</small></div></li>
+      <li class="rv" style="--d:.08s"><span>02</span><div><b data-en="Buy in store, or pick up">Achat en boutique, retrait sur place</b><small data-en="Seen on Instagram? Message us and collect it at the shop.">Vue sur Instagram ? Écrivez-nous et venez la récupérer.</small></div></li>
+      <li class="rv" style="--d:.16s"><span>03</span><div><b data-en="Open Tuesday to Sunday">Ouvert du mardi au dimanche</b><small data-en="Sundays included, closed on Mondays.">Dimanche compris, fermé le lundi.</small></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="avis" id="avis">
+  <div class="rv">
+    <span class="tag" data-en="N°03 — Reviews">N°03 — Les avis</span>
+    <h2 data-en="Those who came <i>say it better.</i>">Ceux qui sont passés <i>le disent mieux.</i></h2>
+  </div>
+  <div class="score rv" id="score">
+    <div class="big"><span id="note">4,8</span><small>/5</small></div>
+    <div>
+      <div class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#star"/></svg><svg viewBox="0 0 24 24"><use href="#star"/></svg><svg viewBox="0 0 24 24"><use href="#star"/></svg><svg viewBox="0 0 24 24"><use href="#star"/></svg><svg viewBox="0 0 24 24"><use href="#star"/></svg></div>
+      <p class="count"><span data-en="out of">sur</span> <b id="nb">89</b> <span data-en="Google reviews">avis Google</span></p>
+      <p class="chipsT" data-en="Words that come up most in your reviews">Les mots qui reviennent le plus dans vos avis</p>
+      <div class="chips"><span><span data-en="prices">prix</span> · <b>15</b></span><span><span data-en="shop">boutique</span> · <b>12</b></span><span><span data-en="seller">vendeur</span> · <b>11</b></span><span><span data-en="choice">choix</span> · <b>10</b></span></div>
+    </div>
+  </div>
+  <blockquote class="rv">« Really cool vintage shop with a strong personality. »<cite data-en="Google review, 2 months ago">Avis Google, il y a 2 mois</cite></blockquote>
+  <div class="cta rv">
+    <a class="btn light" target="_blank" rel="noopener" href="https://www.google.com/maps/place/?q=place_id:ChIJM_DYnXDbzRIRM9KxJqjd-fk"><span data-en="Read all reviews">Lire tous les avis</span> <span class="ar">↗</span></a>
+    <a class="btn lineL" target="_blank" rel="noopener" href="https://search.google.com/local/writereview?placeid=ChIJM_DYnXDbzRIRM9KxJqjd-fk"><span data-en="Leave a review">Laisser un avis</span> <span class="ar">↗</span></a>
+  </div>
+</section>
+
+<section class="venir" id="venir">
+  <div>
+    <div class="rv">
+      <span class="tag" data-en="N°04 — Come by">N°04 — Venir</span>
+      <p class="addr">22 rue Centrale<br><i>06300 Nice</i></p>
+    </div>
+    <dl class="meta rv">
+      <div><dt data-en="Neighbourhood">Quartier</dt><dd data-en="Nice Old Town">Vieux-Nice</dd></div>
+      <div><dt data-en="Closed on">Jour de fermeture</dt><dd data-en="Monday">Lundi</dd></div>
+      <div><dt data-en="In store">Sur place</dt><dd data-en="Shopping and pick-up">Achat et retrait en boutique</dd></div>
+      <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/centralvintageshop/" target="_blank" rel="noopener">@centralvintageshop</a></dd></div>
+    </dl>
+    <div class="cta rv">
+      <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Central%20vintage%20shop%2C%2022%20Rue%20Centrale%2C%2006300%20Nice&destination_place_id=ChIJM_DYnXDbzRIRM9KxJqjd-fk"><span data-en="Get directions">Lancer l'itinéraire</span> <span class="ar">↗</span></a>
+      <a class="btn ghost" target="_blank" rel="noopener" href="https://www.instagram.com/centralvintageshop/"><svg width="20" height="20" viewBox="0 0 24 24"><use href="#ig"/></svg><span data-en="Message us on Instagram">Nous écrire sur Instagram</span></a>
+    </div>
+  </div>
+  <div class="tw rv"><div class="ticket" id="ticket">
+    <h3>Central Vintage Shop</h3>
+    <p class="sub" data-en="OPENING HOURS">HORAIRES D'OUVERTURE</p>
+    <ul id="hours"></ul>
+    <p class="foot" id="tfoot"></p>
+    <div class="bar"></div>
+  </div></div>
+</section>
+</main>
+
+<footer>
+  <p class="fbig">Central<br><span>Vintage</span> Shop</p>
+  <div class="frow">
+    <p>22 rue Centrale, 06300 Nice<br><a href="https://www.instagram.com/centralvintageshop/" target="_blank" rel="noopener">@centralvintageshop</a></p>
+    <p class="m" data-en="Mock-up made by Julien, website design. Information taken from your Google listing and your Instagram on 20 November 2026, to be confirmed with you before going live.">Maquette réalisée par Julien, création de sites internet. Informations reprises de votre fiche Google et de votre Instagram le 20 novembre 2026, à confirmer avec vous avant la mise en ligne.</p>
+  </div>
+</footer>
+
+<div class="dock" id="dock">
+  <span class="st" id="dstatus">…</span>
+  <a class="ig" target="_blank" rel="noopener" href="https://www.instagram.com/centralvintageshop/" aria-label="Instagram"><svg viewBox="0 0 24 24"><use href="#ig"/></svg></a>
+  <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Central%20vintage%20shop%2C%2022%20Rue%20Centrale%2C%2006300%20Nice&destination_place_id=ChIJM_DYnXDbzRIRM9KxJqjd-fk" data-en="Directions">Itinéraire</a>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, lang='fr';
+  // horaires (fiche Google, 20/11/2026) — 0 = dimanche
+  var H={0:[690,1080],1:null,2:[690,1080],3:[690,1110],4:[690,1080],5:[840,1140],6:[690,1140]};
+  var D={fr:['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],en:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']};
+  function fmt(m){var h=Math.floor(m/60),mm=m%60; return lang==='fr'? h+' h'+(mm?' '+('0'+mm).slice(-2):'') : ('0'+h).slice(-2)+':'+('0'+mm).slice(-2)}
+  function now(){
+    try{var p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Paris',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date()),o={};
+      p.forEach(function(x){o[x.type]=x.value});
+      return {d:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(o.weekday),m:(+o.hour%24)*60+ +o.minute}}
+    catch(e){var t=new Date();return {d:t.getDay(),m:t.getHours()*60+t.getMinutes()}}
+  }
+  function status(){
+    var n=now(),h=H[n.d],on=h&&n.m>=h[0]&&n.m<h[1],txt;
+    if(on){txt=(lang==='fr'?'Ouvert · ferme à ':'Open · closes at ')+fmt(h[1])}
+    else if(h&&n.m<h[0]){txt=(lang==='fr'?'Fermé · ouvre à ':'Closed · opens at ')+fmt(h[0])}
+    else{for(var i=1;i<8;i++){var d=(n.d+i)%7;if(H[d]){txt=(lang==='fr'?'Fermé · ouvre ':'Closed · opens ')+(i===1?(lang==='fr'?'demain':'tomorrow'):D[lang][d].toLowerCase().replace(/^./,function(c){return lang==='en'?c.toUpperCase():c}))+(lang==='fr'?' à ':' at ')+fmt(H[d][0]);break}}}
+    [['status','status'],['dstatus','st']].forEach(function(a){var e=document.getElementById(a[0]);e.textContent=txt;e.className=a[1]+' '+(on?'on':'off')});
+    var ul=document.getElementById('hours');ul.innerHTML='';
+    [2,3,4,5,6,0,1].forEach(function(d){var li=document.createElement('li');if(d===n.d)li.className='today';if(!H[d])li.className+=' closed';
+      li.innerHTML='<span>'+D[lang][d]+(d===n.d?'<i class="td">'+(lang==='fr'?' · aujourd’hui':' · today')+'</i>':'')+'</span><span>'+(H[d]?fmt(H[d][0])+' – '+fmt(H[d][1]):(lang==='fr'?'Fermé':'Closed'))+'</span>';ul.appendChild(li)});
+    document.getElementById('tfoot').textContent=(lang==='fr'?'MERCI DE VOTRE VISITE · À BIENTÔT RUE CENTRALE':'THANK YOU · SEE YOU ON RUE CENTRALE');
+  }
+  // langue
+  var tr=[].slice.call(document.querySelectorAll('[data-en]'));
+  tr.forEach(function(e){e.setAttribute('data-fr',e.innerHTML)});
+  function setLang(l){lang=l;root.lang=l;tr.forEach(function(e){e.innerHTML=e.getAttribute('data-'+l)});
+    document.querySelector('.lang').setAttribute('data-l',l);status();try{localStorage.setItem('cvs-lang',l)}catch(e){}}
+  document.querySelector('.lang').addEventListener('click',function(){setLang(lang==='fr'?'en':'fr')});
+  try{if(localStorage.getItem('cvs-lang')==='en')setLang('en')}catch(e){}
+  status();setInterval(status,60000);
+  // menu
+  var bg=document.querySelector('.burger');
+  function menu(o){document.body.classList.toggle('open',o);bg.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''}
+  bg.addEventListener('click',function(){menu(!document.body.classList.contains('open'))});
+  [].forEach.call(document.querySelectorAll('.menu a'),function(a){a.addEventListener('click',function(){menu(false)})});
+  // apparitions
+  var shot=/shot/.test(location.search);if(shot)root.classList.add('shot');
+  var rm=matchMedia('(prefers-reduced-motion:reduce)').matches||shot, els=[].slice.call(document.querySelectorAll('.rv'));
+  if('IntersectionObserver' in window&&!rm){
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);if(x.target.id==='score')count()}})},{threshold:.14,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(e){io.observe(e)});
+  }else els.forEach(function(e){e.classList.add('in')});
+  function count(){var a=document.getElementById('note'),b=document.getElementById('nb'),t0=null;
+    function f(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1300),e=1-Math.pow(1-k,3);a.textContent=(4.8*e).toFixed(1).replace('.',lang==='fr'?',':'.');b.textContent=Math.round(89*e);if(k<1)requestAnimationFrame(f)}
+    requestAnimationFrame(f)}
+  // portant + barre mobile
+  var track=document.getElementById('track'),dock=document.getElementById('dock'),tick=false;
+  function sc(){tick=false;var y=scrollY;if(!rm)track.style.setProperty('--p',Math.min(1,y/700).toFixed(3));dock.classList.toggle('show',y>420)}
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(sc)}},{passive:true});sc();
+})();
+</script>
+</body>
+</html>
